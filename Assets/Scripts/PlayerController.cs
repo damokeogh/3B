@@ -9,9 +9,14 @@ public class PlayerController : MonoBehaviour {
     private int xMax;
     private int zPos;
     private int yPos;
+    private float nextFire;
+    private float fireRate;
 
 
-	// Use this for initialization
+    public Transform shotSpawn;
+    public GameObject bullet;
+
+
 	void Start ()
     {
         rb = GetComponent<Rigidbody>();
@@ -20,10 +25,25 @@ public class PlayerController : MonoBehaviour {
         xMax = 24;
         yPos = 1;
         zPos = -11;
+        nextFire = 0.0f;
+        fireRate = 0.25f;
+
 	}
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    private void Update()
+    {
+        if (Input.GetButton("Fire1") &&  Time.time > nextFire)
+        {
+            nextFire = Time.time + fireRate;
+            GameObject clone = Instantiate(bullet, shotSpawn.position, shotSpawn.rotation);
+
+        }
+        
+
+
+    }
+
+    void FixedUpdate ()
     {
 
         float moveHorizontal = Input.GetAxis("Horizontal");
