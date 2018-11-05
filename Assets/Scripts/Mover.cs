@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour {
 
-    private int speed;
-    Rigidbody rb;
+    public float speed;
+    public Vector3 direction;
 
-	// Use this for initialization
-	void Start () {
-        speed = 20;
-        rb = GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(0, 0, speed);
+    private Rigidbody rb;
 
-	}
-	
-	
+    // Use this for initialization
+    void Start () {
+        rb = GetComponent<Rigidbody> ();
+        if (!transform.CompareTag ("UFO")){
+            Move();
+        }
+    }
+
+    public void Move () {
+        rb.velocity = direction * speed;
+    }
+
+    public void Stop(){
+        rb.velocity = Vector3.zero;
+    }
+
 }

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class DestroyByBoundary : MonoBehaviour {
 
-    private void OnTriggerExit(Collider other)
-    {
-        Destroy(other.gameObject);
+    private void OnTriggerExit (Collider other) {
+        if (other.gameObject.CompareTag ("UFO")) {
+            other.gameObject.GetComponent<UFOController>().Reset();
+        } else {
+            Destroy (other.gameObject);
+        }
     }
 }

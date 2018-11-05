@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - UFO
+  - Enemy
+  - PlayFieldBorder
+  - Bunker
+  - PlayerBullet
+  - EnemyBullet
+  - Boundary
+  - BunkerZone
   layers:
   - Default
   - TransparentFX
