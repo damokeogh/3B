@@ -20,7 +20,7 @@ public class BunkerController : MonoBehaviour {
 			transform.localScale = new Vector3 (transform.localScale.x, transform.localScale.y, newScaleZ);
 		} else {
 			Destroy (this.gameObject);
-			Destroy (other.gameObject);
 		}
+		Destroy (other.gameObject);
 	}
 }

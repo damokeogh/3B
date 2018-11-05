@@ -1632,7 +1632,7 @@ Prefab:
     - target: {fileID: 114875084309520336, guid: 7eae4f421edd14562bca1f02a85da116,
         type: 2}
       propertyPath: timer
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
