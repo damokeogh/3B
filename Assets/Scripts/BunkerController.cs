@@ -23,9 +23,9 @@ public class BunkerController : MonoBehaviour {
             Destroy(other.gameObject);
         } else {
             Destroy (this.gameObject);
-            Destroy(other.gameObject);
-            GameObject clone = Instantiate(explode);
 
         }
+            Destroy(other.gameObject);
+            GameObject clone = Instantiate(explode);
     }
 }

@@ -1300,6 +1300,10 @@ Prefab:
       propertyPath: m_TagString
       value: EnemyPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1286493735584292, guid: 7baf2626738e5f742811d579eca1108a, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7baf2626738e5f742811d579eca1108a, type: 2}
   m_IsPrefabParent: 0
