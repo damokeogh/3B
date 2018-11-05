@@ -2,19 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyController : MonoBehaviour {
 		public GameObject shot;
 		public Transform shotSpawn;
 		public float fireRate;
 		public float startWait;
+        public int scoreValue;
 
-		private Vector3 downDir;
+        private GameController gameController;
+        private Vector3 downDir;
 		private bool canFire;
 		private float nextFire;
 
 		private void Start () {
 			downDir = new Vector3 (0, 0, -1);
 			nextFire = Time.time + startWait;
+            GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+            if(gameControllerObject != null)
+            {
+            gameController = gameControllerObject.GetComponent<GameController>();
+                    
+            }
+            scoreValue = 50;
 		}
 
 		void Update () {
@@ -38,7 +48,14 @@ public class EnemyController : MonoBehaviour {
 			}
 		}
 
-		private void OnTriggerEnter (Collider other) {
+
+        public void EnemyReset()
+        {
+            Destroy(this.gameObject);
+
+        }
+
+    private void OnTriggerEnter (Collider other) {
 			if (other.gameObject.CompareTag ("Boundary")) {
 				return;
 			} else if (other.gameObject.CompareTag ("PlayFieldBorder")) {
@@ -46,6 +63,9 @@ public class EnemyController : MonoBehaviour {
 			} else if (other.gameObject.CompareTag ("PlayerBullet")) {
 					Destroy (this.gameObject);
 					Destroy (other.gameObject);
-				}
+                    gameController.AddScore(scoreValue);
+            }
+            
 			}
-		}
+
+}

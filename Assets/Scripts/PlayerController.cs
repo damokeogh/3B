@@ -11,10 +11,12 @@ public class PlayerController : MonoBehaviour {
     private int yPos;
     private float nextFire;
     private float fireRate;
+    private int lifeValue;
 
-
+    private GameController gameController;
     public Transform shotSpawn;
     public GameObject bullet;
+    public GameObject explode;
 
 
 	void Start ()
@@ -27,8 +29,15 @@ public class PlayerController : MonoBehaviour {
         zPos = -11;
         nextFire = 0.0f;
         fireRate = 0.25f;
+        lifeValue = -1;
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
 
-	}
+        }
+
+    }
 
     private void Update()
     {
@@ -51,5 +60,25 @@ public class PlayerController : MonoBehaviour {
         rb.position = new Vector3 (Mathf.Clamp(rb.position.x, xMin, xMax), yPos, zPos);
 		
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("EnemyBullet"))
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+            GameObject clone = Instantiate(explode);
+            gameController.RemoveLife(lifeValue);
+
+        }
+        if (other.gameObject.CompareTag("UFO"))
+        {
+            Destroy(other.gameObject);
+            Destroy(this.gameObject);
+            GameObject clone = Instantiate(explode);
+            gameController.RemoveLife(lifeValue);
+
+        }
     }
 }
