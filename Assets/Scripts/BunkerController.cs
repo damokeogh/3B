@@ -12,18 +12,15 @@ public class BunkerController : MonoBehaviour {
 		zScaleModifier = transform.localScale.z * 0.1f;
 	}
 
-	private void OnCollisionEnter (Collision other) {
-		if (other.gameObject.CompareTag ("EnemyBullet")) {
-			//get new size
-			float newScaleZ = transform.localScale.z - zScaleModifier;
-			if (newScaleZ > 0) {
-				//apply new size
-				transform.localScale = new Vector3 (transform.localScale.x, transform.localScale.y, newScaleZ);
-				//set position so object looks to be shrinking from the top down
-				transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z / transform.localScale.z);
-			} else {
-				Destroy (this);
-			}
+	private void OnTriggerEnter (Collider other) {
+		//get new size
+		float newScaleZ = transform.localScale.z - zScaleModifier;
+		if (newScaleZ > 0) {
+			//apply new size
+			transform.localScale = new Vector3 (transform.localScale.x, transform.localScale.y, newScaleZ);
+		} else {
+			Destroy (this.gameObject);
+			Destroy (other.gameObject);
 		}
 	}
 }
