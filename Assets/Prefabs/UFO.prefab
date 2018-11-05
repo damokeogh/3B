@@ -1031,3 +1031,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 12
+  scoreValue: 0

@@ -5,8 +5,10 @@ using UnityEngine;
 public class UFOController : MonoBehaviour {
 
 	public int timer;
+    public int scoreValue;
 
-	private float xStart;
+    private GameController gameController;
+    private float xStart;
 	private float nextTime;
 	private Mover mover;
 	private bool moving;
@@ -16,7 +18,13 @@ public class UFOController : MonoBehaviour {
 		xStart = transform.localPosition.x;
 		mover = GetComponent<Mover>();
 		Reset ();
-	}
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+        scoreValue = 150;
+    }
 
 	// Update is called once per frame
 	void Update () {
@@ -30,8 +38,11 @@ public class UFOController : MonoBehaviour {
 
 	private void OnTriggerEnter (Collider other) {
 		if (other.gameObject.CompareTag ("PlayerBullet")) {
-			Reset ();
-		}
+            gameController.AddScore(scoreValue);
+            Destroy(other.gameObject);
+            Reset ();
+            
+        }
 	}
 
 	public void Move () {

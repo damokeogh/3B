@@ -8,10 +8,12 @@ public class Mover : MonoBehaviour {
     public Vector3 direction;
 
     private Rigidbody rb;
+    private AudioSource shot;
 
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody> ();
+        shot = GetComponent<AudioSource>();
         if (!transform.CompareTag ("UFO")){
             Move();
         }

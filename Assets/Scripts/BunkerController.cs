@@ -6,6 +6,8 @@ public class BunkerController : MonoBehaviour {
 
 	private float zScaleModifier;
 
+    public GameObject explode;
+
 	// Use this for initialization
 	void Start () {
 		//get 10% of the objects current scale
@@ -13,14 +15,17 @@ public class BunkerController : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter (Collider other) {
-		//get new size
-		float newScaleZ = transform.localScale.z - zScaleModifier;
+        //get new size
+        float newScaleZ = transform.localScale.z - zScaleModifier;
 		if (newScaleZ > 0) {
 			//apply new size
 			transform.localScale = new Vector3 (transform.localScale.x, transform.localScale.y, newScaleZ);
-		} else {
-			Destroy (this.gameObject);
-			Destroy (other.gameObject);
-		}
-	}
+            Destroy(other.gameObject);
+        } else {
+            Destroy (this.gameObject);
+            Destroy(other.gameObject);
+            GameObject clone = Instantiate(explode);
+
+        }
+    }
 }
