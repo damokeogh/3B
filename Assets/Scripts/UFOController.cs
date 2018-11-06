@@ -38,9 +38,9 @@ public class UFOController : MonoBehaviour {
 
 	private void OnTriggerEnter (Collider other) {
 		if (other.gameObject.CompareTag ("PlayerBullet")) {
-            Destroy(other.gameObject);
-            Reset();
             gameController.AddScore(scoreValue);
+            Destroy(other.gameObject);
+            Reset(); 
             Debug.Log("collision");
             
             
